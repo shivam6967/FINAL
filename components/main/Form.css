@@ -1,0 +1,162 @@
+/* Container styling */
+
+* {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* Image rotation animation */
+.imageChange {
+  animation: spinImage 3s linear infinite; /* Continuous rotation */
+  transform-origin: center; /* Set the rotation point to the center */
+}
+
+/* Keyframes for continuous rotation */
+@keyframes spinImage {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.image-section {
+  margin-left: 30px;
+}
+
+.horoscope-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  z-index: 100;
+}
+
+/* Rotating background image */
+.horoscope-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  /* background-image: url("./img3.png"); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -1; /* Ensures it stays in the background */
+  animation: spinImage 10s linear infinite;
+}
+
+/* Keyframes for rotating in place */
+@keyframes spinImage {
+  0% {
+    transform: rotate(355deg);
+  }
+  100% {
+    transform: rotate(350deg);
+  }
+}
+
+label {
+  color: white;
+}
+
+/* Wrapper styling (Form stays stable) */
+.horoscope-wrapper {
+  height: 80vh;
+  width: 27%;
+  padding: 2%;
+  padding-top: 0%;
+  margin-right: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* background: #fcfcfc; */
+  border-radius: 10px;
+  z-index: 10;
+  position: relative;
+}
+
+.form {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.horoscope-wrapper h2 {
+  margin-bottom: 5%;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Macondo;
+  text-align: center;
+}
+
+/* Input group styling */
+.input-group {
+  margin-bottom: 5%;
+  width: 100%;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 13px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: transparent;
+  text-indent: 5px;
+}
+
+.input-group input::placeholder {
+  font-size: 16px;
+}
+
+.input-group select {
+  width: 105%;
+}
+
+.input-group input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Submit button styling */
+.submit-button {
+  width: 106%;
+  margin-left: 5%;
+  margin-top: 5%;
+  padding: 10px;
+  font-size: 20px;
+  color: #fff;
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-button:hover {
+  scale: 0.98;
+}
