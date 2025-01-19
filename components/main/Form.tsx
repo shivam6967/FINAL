@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import "./Form.css";
+import "./Form.css"; // Importing the CSS file (ensure the correct path)
 
 const HoroscopeForm = () => {
+  const [isClient, setIsClient] = useState(false); // To ensure client-side rendering
   const [formData, setFormData] = useState({
     name: "",
     dob: "",
@@ -15,6 +16,11 @@ const HoroscopeForm = () => {
     includePooja: false,
     includeMeditation: false,
   });
+
+  // Ensuring the component renders only on the client
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -30,23 +36,18 @@ const HoroscopeForm = () => {
     alert("Your Horoscope and Kundali are being generated!");
   };
 
+  if (!isClient) return null; // Prevents server-side rendering issues
+
   return (
     <div id="formto" className="horoscope-container">
       <div className="image-section">
-        {/* <img
-          className="imageOne"
-          style={{ height: "200px", width: "200px" }}
-          src="./img3.png"
-          alt=""
-        /> */}
-
         <Image
           className="imageChange"
           style={{
             marginLeft: "150px",
             marginTop: "-100px",
           }}
-          src="/img3.png"
+          src="/img3.png" // Ensure img3.png is in the public folder
           alt="Rotating Image"
           width={2000} // Set the width
           height={2000} // Set the height
@@ -55,18 +56,9 @@ const HoroscopeForm = () => {
       <div className="horoscope-wrapper">
         <form onSubmit={handleSubmit} className="form">
           <div className="input-group">
-            <label
-              style={{
-                fontSize: "25px",
-              }}
-            >
-              Name
-            </label>
+            <label style={{ fontSize: "25px" }}>Name</label>
             <input
-              style={{
-                width: "400px",
-                fontSize: "17px",
-              }}
+              style={{ width: "400px", fontSize: "17px" }}
               type="text"
               name="name"
               placeholder="Enter your name"
@@ -76,18 +68,9 @@ const HoroscopeForm = () => {
             />
           </div>
           <div className="input-group">
-            <label
-              style={{
-                fontSize: "25px",
-              }}
-            >
-              Date of Birth
-            </label>
+            <label style={{ fontSize: "25px" }}>Date of Birth</label>
             <input
-              style={{
-                width: "400px",
-                fontSize: "17px",
-              }}
+              style={{ width: "400px", fontSize: "17px" }}
               type="text"
               name="dob"
               placeholder="DD/MM/YYYY"
@@ -97,18 +80,9 @@ const HoroscopeForm = () => {
             />
           </div>
           <div className="input-group">
-            <label
-              style={{
-                fontSize: "25px",
-              }}
-            >
-              Time of Birth
-            </label>
+            <label style={{ fontSize: "25px" }}>Time of Birth</label>
             <input
-              style={{
-                width: "400px",
-                fontSize: "17px",
-              }}
+              style={{ width: "400px", fontSize: "17px" }}
               type="text"
               name="timeOfBirth"
               placeholder="HH:MM"
@@ -118,13 +92,7 @@ const HoroscopeForm = () => {
             />
           </div>
           <div className="input-group">
-            <label
-              style={{
-                fontSize: "25px",
-              }}
-            >
-              Gender
-            </label>
+            <label style={{ fontSize: "25px" }}>Gender</label>
             <select
               style={{
                 width: "400px",
@@ -142,13 +110,7 @@ const HoroscopeForm = () => {
             </select>
           </div>
           <div className="input-group">
-            <label
-              style={{
-                fontSize: "25px",
-              }}
-            >
-              State
-            </label>
+            <label style={{ fontSize: "25px" }}>State</label>
             <input
               style={{
                 width: "400px",
@@ -164,13 +126,7 @@ const HoroscopeForm = () => {
             />
           </div>
           <div className="input-group">
-            <label
-              style={{
-                fontSize: "25px",
-              }}
-            >
-              City
-            </label>
+            <label style={{ fontSize: "25px" }}>City</label>
             <input
               style={{
                 width: "400px",

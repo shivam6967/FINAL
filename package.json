@@ -31,5 +31,13 @@
     "tailwindcss": "^3",
     "three": "^0.157.0",
     "typescript": "^5"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "\\"
+  },
+  "author": "",
+  "license": "ISC"
 }
