@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import React, { useState } from "react";
 import Image from "next/image";
-import "./Form.css"; // Importing the CSS file (ensure the correct path)
+import "./Form.css";
 
 const HoroscopeForm = () => {
-  const [isClient, setIsClient] = useState(false); // To ensure client-side rendering
   const [formData, setFormData] = useState({
     name: "",
     dob: "",
@@ -17,31 +17,20 @@ const HoroscopeForm = () => {
     includeMeditation: false,
   });
 
-  // Ensuring the component renders only on the client
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    const { name, value, type } = e.target;
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]:
-        type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
-    }));
-  };
+  // Generic handler for inputs
+  const updateFormField =
+    (fieldName: string, type: string) => (value: string | boolean) => {
+      setFormData((prevData) => ({
+        ...prevData,
+        [fieldName]: type === "checkbox" ? value : value,
+      }));
+    };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
     alert("Your Horoscope and Kundali are being generated!");
   };
-
-  if (!isClient) return null; // Prevents server-side rendering issues
 
   return (
     <div id="formto" className="horoscope-container">
@@ -52,10 +41,10 @@ const HoroscopeForm = () => {
             marginLeft: "150px",
             marginTop: "-100px",
           }}
-          src="/img3.png" // Ensure img3.png is in the public folder
+          src="/img3.png"
           alt="Rotating Image"
-          width={2000} // Set the width
-          height={2000} // Set the height
+          width={2000}
+          height={2000}
         />
       </div>
       <div className="horoscope-wrapper">
@@ -65,10 +54,9 @@ const HoroscopeForm = () => {
             <input
               style={{ width: "400px", fontSize: "17px" }}
               type="text"
-              name="name"
               placeholder="Enter your name"
               value={formData.name}
-              onChange={handleChange}
+              onChange={(e) => updateFormField("name", "text")(e.target.value)}
               required
             />
           </div>
@@ -77,10 +65,9 @@ const HoroscopeForm = () => {
             <input
               style={{ width: "400px", fontSize: "17px" }}
               type="text"
-              name="dob"
               placeholder="DD/MM/YYYY"
               value={formData.dob}
-              onChange={handleChange}
+              onChange={(e) => updateFormField("dob", "text")(e.target.value)}
               required
             />
           </div>
@@ -89,10 +76,11 @@ const HoroscopeForm = () => {
             <input
               style={{ width: "400px", fontSize: "17px" }}
               type="text"
-              name="timeOfBirth"
               placeholder="HH:MM"
               value={formData.timeOfBirth}
-              onChange={handleChange}
+              onChange={(e) =>
+                updateFormField("timeOfBirth", "text")(e.target.value)
+              }
               required
             />
           </div>
@@ -104,9 +92,10 @@ const HoroscopeForm = () => {
                 fontSize: "17px",
                 backgroundColor: "black",
               }}
-              name="gender"
               value={formData.gender}
-              onChange={handleChange}
+              onChange={(e) =>
+                updateFormField("gender", "select")(e.target.value)
+              }
             >
               <option value="none">Select Gender</option>
               <option value="male">Male</option>
@@ -117,32 +106,22 @@ const HoroscopeForm = () => {
           <div className="input-group">
             <label style={{ fontSize: "25px" }}>State</label>
             <input
-              style={{
-                width: "400px",
-                fontSize: "17px",
-                backgroundColor: "black",
-              }}
+              style={{ width: "400px", fontSize: "17px" }}
               type="text"
-              name="state"
               placeholder="Enter your state"
               value={formData.state}
-              onChange={handleChange}
+              onChange={(e) => updateFormField("state", "text")(e.target.value)}
               required
             />
           </div>
           <div className="input-group">
             <label style={{ fontSize: "25px" }}>City</label>
             <input
-              style={{
-                width: "400px",
-                fontSize: "17px",
-                backgroundColor: "black",
-              }}
+              style={{ width: "400px", fontSize: "17px" }}
               type="text"
-              name="city"
               placeholder="Enter your city"
               value={formData.city}
-              onChange={handleChange}
+              onChange={(e) => updateFormField("city", "text")(e.target.value)}
               required
             />
           </div>
