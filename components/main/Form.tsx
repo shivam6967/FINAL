@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import "./Form.css";
+import Link from "next/link";
 
 const HoroscopeForm = () => {
   const [formData, setFormData] = useState({
@@ -125,17 +126,19 @@ const HoroscopeForm = () => {
               required
             />
           </div>
-          <button
-            style={{
-              width: "400px",
-              fontSize: "17px",
-              backgroundColor: "black",
-            }}
-            type="submit"
-            className="submit-button"
-          >
-            Generate Horoscope
-          </button>
+          <Link href="https://page2-orcin.vercel.app/">
+            <button
+              style={{
+                width: "400px",
+                fontSize: "17px",
+                backgroundColor: "black",
+              }}
+              type="submit"
+              className="submit-button"
+            >
+              Generate Horoscope
+            </button>
+          </Link>
         </form>
       </div>
     </div>
